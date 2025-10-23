@@ -1,0 +1,21 @@
+name: CodeQL + Docker CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyze:
+    # Use ubuntu-latest for the analysis job
+    # Define permissions for the job
+    # Define language to be analyzed
+    name: CodeQL Analysis
+
+  docker:
+    name: Docker Build & Run
+    runs-on: ubuntu-latest
+    needs: analyze
+
+    # Define steps to build and run the Docker container
