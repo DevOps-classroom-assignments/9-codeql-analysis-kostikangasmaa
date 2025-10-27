@@ -35,6 +35,14 @@ curl "http://localhost:8080/readfile?file=hello.txt"
 
 You should see the content of the `safe-files/hello.txt` in the respone.
 
+> [!WARNING]
+> What if the user adds a path in the filename? An attacker might try using the following `file` attributes:
+>
+> ```
+> curl "http://localhost:8080/readfile?file=../main.go"
+> curl "http://localhost:8080/readfile?file=../../etc/shadow"
+> ```
+
 ### Step 2. Implement CodeQL - CI workflow
 
 > **Note:**  
