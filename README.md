@@ -25,7 +25,7 @@ Build the container and run it locally.
 
 ```bash
 docker build -t go-web-server .
-docker run -p 8080:8080 go-web-server
+docker run -p 8080:8080 -it --rm go-web-server
 ```
 After container is running, test the `/readfile` endpoint using the following curl command:
 
