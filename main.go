@@ -18,16 +18,24 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
+
 func readFileHandler(w http.ResponseWriter, r *http.Request) {
 	filename := r.URL.Query().Get("file")
+	if filename == "" {
+		http.Error(w, "missing file parameter", http.StatusBadRequest)
+		return
+	}
 
-	data, err := ioutil.ReadFile(filename)
+	targetPath := filepath.Join(allowedDir, filename)
+
+	data, err := ioutil.ReadFile(targetPath)
 	if err != nil {
 		http.Error(w, "File not found", 404)
 		return
 	}
 	w.Write(data)
 }
+
 
 func execHandler(w http.ResponseWriter, r *http.Request) {
 	cmd := r.URL.Query().Get("cmd")
